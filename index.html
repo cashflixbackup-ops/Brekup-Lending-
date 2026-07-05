@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<script>
+const offerMap = {
+  'PBXY8X7K2': 'P',
+  'STOR9X3K1': 'StoryMax',
+  'CMNX5X2K9': 'cc'
+};
+
+const params = new URLSearchParams(window.location.search);
+const cid = params.get('cid');
+const offer = offerMap[cid];
+
+if (offer) {
+  //  fahhhhhhhhh
+  fetch('/offers/' + offer + '.html')
+    .then(r => r.text())
+    .then(html => {
+      document.open();
+      document.write(html);
+      document.close();
+    });
+} else {
+  document.body.innerHTML = '<h2 style="text-align:center;margin-top:40px;font-family:sans-serif;">Offer Temporary Paused</h2>';
+}
+</script>
+</body>
+</html>
